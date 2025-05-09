@@ -123,21 +123,34 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Bouton Ajouter
     private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
         listeners.firePropertyChange("openInsertUser", null, null);
     }//GEN-LAST:event_insertBtnActionPerformed
 
+    // Bouton Modifier
     private void modifBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifBtnActionPerformed
         listeners.firePropertyChange("openUpdateUser", null, null);
     }//GEN-LAST:event_modifBtnActionPerformed
 
+    // Bouton Supprimer
     private void supprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprBtnActionPerformed
+        // Confirmation pour supprimer l'utilisateur
         int retour = JOptionPane.showConfirmDialog(this, "Êtes-vous sûr de vouloir supprimer cet utilisateur ?");
-
+        // Test si l'utilisateur a repondu oui
         if (retour == JOptionPane.YES_OPTION) {
-            listeners.firePropertyChange("deleteUser", null, null);
+            try {
+                listeners.firePropertyChange("deleteUser", null, null);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // Si aucun utilisateur est sélectionné alors message d'erreur
+                JOptionPane.showMessageDialog(this, "Aucun utilisateur sélectionné.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Aucun utilisateur sélectionné");
+            }
         }
     }//GEN-LAST:event_supprBtnActionPerformed
+    // Getter
+    // Obtenir les informations de chaque colone de la Jtable
     public int getSelectedId() {
         return (Integer) this.usersList.getModel().getValueAt(this.usersList.getSelectedRow(), 0);
     }
@@ -157,6 +170,7 @@ public class MainView extends javax.swing.JFrame {
     public String getSelectedMdp() {
         return (String) this.usersList.getModel().getValueAt(this.usersList.getSelectedRow(), 4);
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton insertBtn;
     private javax.swing.JScrollPane jScrollPane1;

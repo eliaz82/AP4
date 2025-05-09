@@ -69,12 +69,6 @@ public class CreateDialog extends javax.swing.JDialog {
             }
         });
 
-        jTextNom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("création d'un utilisateur");
 
         jLabel2.setText("Nom :");
@@ -86,30 +80,6 @@ public class CreateDialog extends javax.swing.JDialog {
         jLabel5.setText("Mot de passe :");
 
         jLabel6.setText("Validation du mot de passe :");
-
-        jTextPrenom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextPrenomActionPerformed(evt);
-            }
-        });
-
-        jTextMail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextMailActionPerformed(evt);
-            }
-        });
-
-        jmdp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmdpActionPerformed(evt);
-            }
-        });
-
-        jValiderMdp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jValiderMdpActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,37 +156,24 @@ public class CreateDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomActionPerformed
-
-    private void jTextPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPrenomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextPrenomActionPerformed
-
-    private void jTextMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextMailActionPerformed
-
-    private void jmdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmdpActionPerformed
-
-    private void jValiderMdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jValiderMdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jValiderMdpActionPerformed
-
+    // Bouton valider CreateDialog
     private void validerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerBtnActionPerformed
+        //Test pour voir si cest le meme mot de passe dans les 2 champ mdp et validationmdp
         if (getMotDePasse().equals(getMotDePasseValidation())) {
             listeners.firePropertyChange("validInsertUser", null, null);
         } else {
+            //message d'erreur si pas le cas
             JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_validerBtnActionPerformed
 
+    // Bouton retour CreateDialog
     private void retourBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourBtnActionPerformed
         listeners.firePropertyChange("closeCreateDialog", null, null);
 	}//GEN-LAST:event_retourBtnActionPerformed
+
+    // Getter
+    // Obtenir les informations
     public String getNom() {
         return jTextNom.getText();
     }
@@ -235,6 +192,16 @@ public class CreateDialog extends javax.swing.JDialog {
 
     public String getMotDePasseValidation() {
         return new String(jValiderMdp.getPassword());
+    }
+
+    // Setter 
+    // methode pour mettre a vide tout les champs apres chaque ajout
+    public void setDefaultText() {
+        this.jTextNom.setText("");
+        this.jTextPrenom.setText("");
+        this.jTextMail.setText("");
+        this.jmdp.setText("");
+        this.jValiderMdp.setText("");
     }
 
     /**

@@ -31,17 +31,16 @@ public class ModifDialog extends javax.swing.JDialog {
         this.listeners.addPropertyChangeListener(l);
     }
 
-    //methode pour modifier la valeur de l'id
+    // Setter 
+    // Modifier les informations
     public void setId(int id) {
         this.id = id;
     }
 
-    //methode pour modifier la valeur du nom
     public void setNom(String selectNom) {
         this.jTextNom.setText(selectNom);
     }
 
-    //methode pour modifier la valeur du prenom
     public void setPrenom(String selectPrenom) {
         this.jTextPrenom.setText(selectPrenom);
     }
@@ -54,11 +53,12 @@ public class ModifDialog extends javax.swing.JDialog {
         this.jValiderMdp.setText(motDePasse);
     }
 
-    //methode pour modifier la valeur de l'email
     public void setEmail(String selectMail) {
         this.jTextMail.setText(selectMail);
     }
 
+    // Getter
+    // Obtenir les informations
     public String getEmail() {
         return this.jTextMail.getText();
     }
@@ -74,6 +74,7 @@ public class ModifDialog extends javax.swing.JDialog {
     public String getMotDePasse() {
         return new String(jmdp.getPassword());
     }
+
     public String getMotDePasseValidation() {
         return new String(jValiderMdp.getPassword());
     }
@@ -111,18 +112,6 @@ public class ModifDialog extends javax.swing.JDialog {
 
         jLabel6.setText("Validation du mot de passe :");
 
-        jTextPrenom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextPrenomActionPerformed(evt);
-            }
-        });
-
-        jTextMail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextMailActionPerformed(evt);
-            }
-        });
-
         retourBtn.setText("retour");
         retourBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,28 +119,10 @@ public class ModifDialog extends javax.swing.JDialog {
             }
         });
 
-        jmdp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmdpActionPerformed(evt);
-            }
-        });
-
         validerBtn.setText("Valider");
         validerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 validerBtnActionPerformed(evt);
-            }
-        });
-
-        jValiderMdp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jValiderMdpActionPerformed(evt);
-            }
-        });
-
-        jTextNom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomActionPerformed(evt);
             }
         });
 
@@ -236,35 +207,18 @@ public class ModifDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPrenomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextPrenomActionPerformed
-
-    private void jTextMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextMailActionPerformed
-
-    private void jTextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomActionPerformed
-
-    private void jmdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmdpActionPerformed
-
-    private void jValiderMdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jValiderMdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jValiderMdpActionPerformed
-
+    // Bouton valider ModifDialog
     private void validerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerBtnActionPerformed
+        //Test pour voir si cest le meme mot de passe dans les 2 champ mdp et validationmdp
         if (getMotDePasse().equals(getMotDePasseValidation())) {
             listeners.firePropertyChange("validationNouveauUser", null, null);
         } else {
+            //message d'erreur si pas le cas
             JOptionPane.showMessageDialog(null, "Les mots de passe ne correspondent pas.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_validerBtnActionPerformed
-
+    // Bouton retour ModifDialog
     private void retourBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourBtnActionPerformed
         listeners.firePropertyChange("closeModifDialog", null, null);
     }//GEN-LAST:event_retourBtnActionPerformed

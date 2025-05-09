@@ -14,13 +14,14 @@ import java.util.logging.Logger;
  * @author e.talmitte
  */
 public class MySQLConnexion {
-
-//    private static String url = "jdbc:mysql://172.28.37.20:3306/ap4";
-//    private static String user = "e_talmitte";
-//    private static String pass = "Btssio82300";
-    private static String url = "jdbc:mysql://localhost:3306/ap4";
-    private static String user = "root";
-    private static String pass = "";
+    // Informations de connexion a la base de donnés
+    
+    private static String url = "jdbc:mysql://172.28.37.20:3306/ap4";
+    private static String user = "e_talmitte";
+    private static String pass = "Btssio82300";
+//    private static String url = "jdbc:mysql://localhost:3306/ap4";
+//    private static String user = "root";
+//    private static String pass = "";
 
     private static Connection con = null;
 

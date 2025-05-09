@@ -14,11 +14,15 @@ import javax.swing.table.AbstractTableModel;
  */
 public class UserListModel extends AbstractTableModel {
 
+    // Liste des utilisateurs affichés dans le tableau.
     private ArrayList<Utilisateur> users = new ArrayList<Utilisateur>();
 
+    // Noms des colonnes du tableau
     private final String[] entetes = {"ID", "Nom", "Prenom", "Email", "Mot de passe"};
+    // DAO permettant l'accès aux données en base.
     private UserDAO usersDao;
 
+    // Constructeur : initialise le DAO et charge tous les utilisateurs existants.
     public UserListModel() {
         this.usersDao = new UserDAO();
         users = this.usersDao.findAll();
@@ -54,25 +58,24 @@ public class UserListModel extends AbstractTableModel {
         return "Non defini";
     }
 
+    // Supprime un utilisateur via son ID, puis rafraîchit la liste et la vue.
     public void delete(int id) {
-        Utilisateur user = this.usersDao.findById(id);
-        usersDao.delete(user);
-
+        this.usersDao.delete(id);
         users = this.usersDao.findAll();
-
         fireTableDataChanged();
     }
 
+    // Insère un utilisateur en base, recharge la liste et met à jour la vue.
     public void insert(Utilisateur user) {
         Utilisateur newUser = this.usersDao.insert(user);
-        users.add(newUser);
+        users = this.usersDao.findAll();
         fireTableDataChanged();
     }
 
+    // Met à jour un utilisateur en base, recharge la liste et actualise la vue.
     public void update(Utilisateur user) {
         this.usersDao.update(user);
         this.users = this.usersDao.findAll();
-
         fireTableDataChanged();
     }
 }

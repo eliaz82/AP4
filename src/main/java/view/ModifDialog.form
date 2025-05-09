@@ -121,14 +121,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextPrenom">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextPrenomActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextMail">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextMailActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="retourBtn">
       <Properties>
@@ -139,9 +133,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jmdp">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmdpActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="validerBtn">
       <Properties>
@@ -152,14 +143,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jValiderMdp">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jValiderMdpActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextNom">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNomActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

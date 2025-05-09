@@ -22,9 +22,11 @@ public class UserDAO {
     private Connection connexion;
 
     public UserDAO() {
+        // Instanciation Singleton
         this.connexion = MySQLConnexion.getConnexion();
     }
 
+    //Récupere tout les utilisateurs
     public ArrayList<Utilisateur> findAll() {
         try {
             String query = "SELECT * FROM utilisateur";
@@ -49,6 +51,7 @@ public class UserDAO {
         }
     }
 
+    //Crée un user
     public Utilisateur insert(Utilisateur user) {
         try {
             String query = "insert into utilisateur(nom, prenom,adresseMail,mdp) VALUES (?, ?, ?, ?)";
@@ -65,7 +68,8 @@ public class UserDAO {
 
         return user;
     }
-
+    
+    //Modifie un user
     public Utilisateur update(Utilisateur user) {
         try {
             String query = "update utilisateur Set nom = ?, prenom = ?,adresseMail = ?,mdp = ? where id = ?";
@@ -83,19 +87,19 @@ public class UserDAO {
         return user;
     }
 
-    public Utilisateur delete(Utilisateur user) {
+    //Suprime un user
+    public void delete(int id) {
         try {
             String query = "delete from utilisateur where id = ?";
             PreparedStatement ps = this.connexion.prepareStatement(query);
-            ps.setString(1, Integer.toString(user.getId()));
+            ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Utilisateur.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return user;
     }
-
+    
+    //Trouve un user grace a son id
     public Utilisateur findById(int id) {
         Utilisateur user = null;
         try {
