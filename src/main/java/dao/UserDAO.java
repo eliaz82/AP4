@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,9 @@ public class UserDAO {
     //Récupere tout les utilisateurs
     public ArrayList<Utilisateur> findAll() {
         try {
-            String query = "SELECT * FROM utilisateur";
+            // ajout dun where pour filter les utilisateurs pas supprime
+            //donc qui ont dans la clone datedepart null
+            String query = "SELECT * FROM utilisateur WHERE dateDepart IS NULL";
             PreparedStatement ps = this.connexion.prepareStatement(query);
             ResultSet res = ps.executeQuery();
 
@@ -45,6 +48,35 @@ public class UserDAO {
                 users.add(new Utilisateur(id, nom, prenom, adresseMail, mdp));
             }
 
+            return users;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+
+    public ArrayList<Utilisateur> findUtilisateurSuppr() {
+        try {
+
+            // soustrait 2 ans a la date du jours
+            java.sql.Date dateLimite = java.sql.Date.valueOf(LocalDate.now().minusYears(2));
+
+            //ajout du where pour filtreer les utilisateur suprimer depuis au moins 2 ans
+            String query = "SELECT * FROM utilisateur WHERE dateDepart <= ?";
+            PreparedStatement ps = this.connexion.prepareStatement(query);
+            ps.setDate(1, dateLimite);
+
+            ResultSet res = ps.executeQuery();
+            ArrayList<Utilisateur> users = new ArrayList<>();
+
+            while (res.next()) {
+                int id = res.getInt("id");
+                String nom = res.getString("nom");
+                String prenom = res.getString("prenom");
+                String adresseMail = res.getString("adresseMail");
+                String mdp = res.getString("mdp");
+
+                users.add(new Utilisateur(id, nom, prenom, adresseMail, mdp));
+            }
             return users;
         } catch (SQLException ex) {
             return null;
@@ -68,7 +100,7 @@ public class UserDAO {
 
         return user;
     }
-    
+
     //Modifie un user
     public Utilisateur update(Utilisateur user) {
         try {
@@ -90,15 +122,17 @@ public class UserDAO {
     //Suprime un user
     public void delete(int id) {
         try {
-            String query = "delete from utilisateur where id = ?";
+            //fais un update met la date actuelle dans la colone dateDepart
+            String query = "UPDATE utilisateur SET dateDepart = ? WHERE id = ?";
             PreparedStatement ps = this.connexion.prepareStatement(query);
-            ps.setInt(1, id);
+            ps.setDate(1, new java.sql.Date(System.currentTimeMillis()));
+            ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Utilisateur.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     //Trouve un user grace a son id
     public Utilisateur findById(int id) {
         Utilisateur user = null;

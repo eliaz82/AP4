@@ -65,6 +65,18 @@ public class UserListModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    public void findAll() {
+        // Apelle la methode findALL du DAO
+        users = this.usersDao.findAll();
+        fireTableDataChanged();
+    }
+
+    public void findUtilisateurSuppr() {
+        // Apelle la methode findUtilisateurSuppr du DAO
+        users = this.usersDao.findUtilisateurSuppr();
+        fireTableDataChanged();
+    }
+
     // Insère un utilisateur en base, recharge la liste et met à jour la vue.
     public void insert(Utilisateur user) {
         Utilisateur newUser = this.usersDao.insert(user);

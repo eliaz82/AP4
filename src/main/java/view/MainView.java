@@ -49,6 +49,8 @@ public class MainView extends javax.swing.JFrame {
         insertBtn = new javax.swing.JButton();
         modifBtn = new javax.swing.JButton();
         supprBtn = new javax.swing.JButton();
+        jToggleButtonSuppr = new javax.swing.JToggleButton();
+        jToggleButtonTout = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,30 +89,59 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
+        jToggleButtonSuppr.setText("Afficher les utilisateurs supprimé");
+        jToggleButtonSuppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonSupprActionPerformed(evt);
+            }
+        });
+
+        jToggleButtonTout.setText("Afficher tout les utilisateurs");
+        jToggleButtonTout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonToutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(157, 157, 157)
                         .addComponent(modifBtn)
                         .addGap(125, 125, 125)
                         .addComponent(supprBtn))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(insertBtn)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(195, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jToggleButtonTout))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jToggleButtonSuppr)))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertBtn))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(insertBtn)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jToggleButtonSuppr)
+                        .addGap(62, 62, 62)
+                        .addComponent(jToggleButtonTout)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modifBtn)
@@ -149,6 +180,18 @@ public class MainView extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_supprBtnActionPerformed
+
+    private void jToggleButtonSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSupprActionPerformed
+        //envoie une notification au controleur
+        listeners.firePropertyChange("btnsupprliste", null, null);
+
+    }//GEN-LAST:event_jToggleButtonSupprActionPerformed
+
+    private void jToggleButtonToutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonToutActionPerformed
+        //envoie une notification au controleur
+        listeners.firePropertyChange("btnFindAlLliste", null, null);
+
+    }//GEN-LAST:event_jToggleButtonToutActionPerformed
     // Getter
     // Obtenir les informations de chaque colone de la Jtable
     public int getSelectedId() {
@@ -174,6 +217,8 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton insertBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToggleButton jToggleButtonSuppr;
+    private javax.swing.JToggleButton jToggleButtonTout;
     private javax.swing.JButton modifBtn;
     private javax.swing.JButton supprBtn;
     private javax.swing.JTable usersList;

@@ -100,6 +100,14 @@ public class MainControl implements PropertyChangeListener {
                 //Ferme le modal CreateDialog.
                 this.createDialog.setVisible(false);
                 break;
+            case "btnsupprliste":
+                // Apelle la methode findUtilisateurSuppr
+                this.userListModel.findUtilisateurSuppr();
+                break;
+            case "btnFindAlLliste":
+                // Apelle la methode findALL
+                this.userListModel.findAll();
+                break;
         }
     }
 
